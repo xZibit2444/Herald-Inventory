@@ -327,6 +327,29 @@ document.head.appendChild(style);
 
 // Logout functionality
 function setupLogout() {
+    // Sidebar
+    const sidebar = document.getElementById('sidebar');
+    const closeSidebar = document.getElementById('closeSidebar');
+    const menuToggle = document.getElementById('menuToggle');
+    
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.add('active');
+        });
+    }
+    
+    closeSidebar.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+    });
+    
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 1024) {
+                sidebar.classList.remove('active');
+            }
+        });
+    });
+
     const logoutModal = document.getElementById('logoutModal');
     const logoutBtn = document.getElementById('logoutBtn');
     const cancelLogout = document.getElementById('cancelLogout');

@@ -673,8 +673,13 @@ tbody tr:hover .badge {
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+    .menu-toggle {
+        display: block;
+    }
+    
     .sidebar {
         transform: translateX(-100%);
+        position: fixed;
     }
     
     .sidebar.active {

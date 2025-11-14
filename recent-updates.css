@@ -125,6 +125,21 @@ body {
 }
 
 /* Top Navigation */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #1a2332;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.menu-toggle:hover {
+    color: #3b82f6;
+}
+
 .top-nav {
     background: #ffffff;
     padding: 1.25rem 2.5rem;
@@ -132,6 +147,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -558,6 +574,29 @@ body {
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .main-wrapper {
+        margin-left: 0;
+    }
+    
+    .close-sidebar {
+        display: block;
+    }
+}
+
 @media (max-width: 768px) {
     .sidebar {
         transform: translateX(-100%);

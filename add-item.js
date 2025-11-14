@@ -83,6 +83,13 @@ function resetForm() {
 // Sidebar navigation
 const sidebar = document.getElementById('sidebar');
 const closeSidebar = document.getElementById('closeSidebar');
+const menuToggle = document.getElementById('menuToggle');
+
+if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+        sidebar.classList.add('active');
+    });
+}
 
 closeSidebar.addEventListener('click', () => {
     sidebar.classList.remove('active');
