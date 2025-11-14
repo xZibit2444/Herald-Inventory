@@ -95,7 +95,14 @@ function setupEventListeners() {
     
     // Sidebar and navigation
     const sidebar = document.getElementById('sidebar');
+    const menuToggle = document.getElementById('menuToggle');
     const closeSidebar = document.getElementById('closeSidebar');
+    
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.add('active');
+        });
+    }
     
     closeSidebar.addEventListener('click', () => {
         sidebar.classList.remove('active');
