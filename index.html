@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herald Business Inventory Management System</title>
+    <link rel="icon" type="image/png" href="../IMG_0818.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="landing.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-text">Herald Inventory</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#why">Why Choose</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-text" data-aos="fade-right">
+                    <h1>Herald Business Inventory Management System</h1>
+                    <p>A secure, private platform for employees to efficiently manage and fix inventory.</p>
+                    <div class="hero-buttons">
+                        <a href="login.html" class="btn btn-primary">Employee Login</a>
+                        <a href="signup.html" class="btn btn-secondary">Sign Up</a>
+                    </div>
+                </div>
+                <div class="hero-illustration" data-aos="fade-left">
+                    <svg width="550" height="450" viewBox="0 0 550 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="boxGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#20c997;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#17a2b8;stop-opacity:0.5" />
+                            </linearGradient>
+                            <linearGradient id="barGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#20c997;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#17a2b8;stop-opacity:0.6" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Floating Boxes (Animated) -->
+                        <rect x="50" y="80" width="120" height="120" rx="16" fill="url(#boxGradient)" opacity="0.4" class="float-box box-1"/>
+                        <rect x="380" y="60" width="100" height="100" rx="16" fill="url(#boxGradient)" opacity="0.3" class="float-box box-2"/>
+                        <rect x="420" y="280" width="80" height="80" rx="12" fill="url(#boxGradient)" opacity="0.35" class="float-box box-3"/>
+                        
+                        <!-- Main Container -->
+                        <g class="main-container">
+                            <!-- Box Icon -->
+                            <rect x="200" y="100" width="150" height="140" rx="12" fill="rgba(255,255,255,0.15)" stroke="#20c997" stroke-width="3" class="pulse-element"/>
+                            <line x1="200" y1="160" x2="350" y2="160" stroke="#20c997" stroke-width="2" opacity="0.6"/>
+                            <line x1="275" y1="160" x2="275" y2="240" stroke="#20c997" stroke-width="2" opacity="0.6"/>
+                            <circle cx="275" cy="130" r="8" fill="#20c997" class="pulse-dot"/>
+                            
+                            <!-- Chart Bars (Animated) -->
+                            <rect x="220" y="200" width="20" height="0" rx="4" fill="url(#barGradient)" class="grow-bar bar-1"/>
+                            <rect x="250" y="180" width="20" height="0" rx="4" fill="url(#barGradient)" class="grow-bar bar-2"/>
+                            <rect x="280" y="190" width="20" height="0" rx="4" fill="url(#barGradient)" class="grow-bar bar-3"/>
+                            <rect x="310" y="170" width="20" height="0" rx="4" fill="url(#barGradient)" class="grow-bar bar-4"/>
+                            
+                            <!-- Checkmarks -->
+                            <g class="checkmark check-1">
+                                <circle cx="140" cy="300" r="25" fill="rgba(32,201,151,0.2)" stroke="#20c997" stroke-width="2.5"/>
+                                <path d="M130 300 L137 307 L150 290" stroke="#20c997" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            </g>
+                            <g class="checkmark check-2">
+                                <circle cx="410" cy="320" r="20" fill="rgba(32,201,151,0.2)" stroke="#20c997" stroke-width="2"/>
+                                <path d="M402 320 L408 326 L418 312" stroke="#20c997" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                            </g>
+                            
+                            <!-- Database Icon -->
+                            <ellipse cx="275" cy="320" rx="45" ry="12" fill="rgba(255,255,255,0.2)" stroke="#17a2b8" stroke-width="2" class="pulse-element"/>
+                            <ellipse cx="275" cy="340" rx="45" ry="12" fill="rgba(255,255,255,0.15)" stroke="#17a2b8" stroke-width="2" class="pulse-element"/>
+                            <rect x="230" y="320" width="90" height="20" fill="rgba(255,255,255,0.1)" stroke="#17a2b8" stroke-width="2"/>
+                            
+                            <!-- Connecting Lines (Animated) -->
+                            <path d="M140 325 Q200 340 230 335" stroke="#20c997" stroke-width="2" fill="none" opacity="0.5" stroke-dasharray="5,5" class="dash-line"/>
+                            <path d="M320 335 Q360 340 385 325" stroke="#20c997" stroke-width="2" fill="none" opacity="0.5" stroke-dasharray="5,5" class="dash-line"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <div class="hero-bg-shapes"></div>
+        </section>
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-lock"></i>
+                        <h3>Secure Access</h3>
+                        <p>Authorized employee-only access with advanced security protocols.</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-tools"></i>
+                        <h3>Inventory Fixes</h3>
+                        <p>Quick and easy tools for employees to update, correct, and maintain inventory records.</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-users-cog"></i>
+                        <h3>Employee Tools</h3>
+                        <p>Dedicated features for staff to handle inventory tasks efficiently and accurately.</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Secure</h3>
+                        <p>Your data is protected with enterprise-grade security measures.</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                        <i class="fas fa-sync-alt"></i>
+                        <h3>Real-Time Sync</h3>
+                        <p>Instant data synchronization across all devices - mobile, tablet, and desktop.</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                        <i class="fas fa-database"></i>
+                        <h3>Cloud Storage</h3>
+                        <p>Centralized cloud database ensures all employees see the same up-to-date inventory data.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="why" class="why-choose">
+            <div class="container">
+                <div class="why-content">
+                    <div class="why-text" data-aos="fade-right">
+                        <h2>Why Choose Herald</h2>
+                        <ul>
+                            <li>Private access for authorized employees only</li>
+                            <li>Streamlined tools for inventory corrections and updates</li>
+                            <li>Secure environment to protect sensitive business data</li>
+                            <li>User-friendly interface designed for quick fixes</li>
+                            <li>Real-time synchronization across employee devices</li>
+                        </ul>
+                    </div>
+                    <div class="why-illustration" data-aos="fade-left">
+                        <svg width="450" height="350" viewBox="0 0 450 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#20c997;stop-opacity:0.8" />
+                                    <stop offset="100%" style="stop-color:#17a2b8;stop-opacity:0.6" />
+                                </linearGradient>
+                                <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#20c997;stop-opacity:0.3" />
+                                    <stop offset="100%" style="stop-color:#17a2b8;stop-opacity:0.2" />
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- Central Shield Icon -->
+                            <g class="shield-icon">
+                                <path d="M225 80 L225 80 C245 85 265 85 285 80 L285 80 C285 120 280 160 255 190 C230 220 225 225 225 225 C225 225 220 220 195 190 C170 160 165 120 165 80 C185 85 205 85 225 80 Z" 
+                                      fill="url(#shieldGradient)" stroke="#20c997" stroke-width="3" class="shield-body"/>
+                                <path d="M210 150 L220 160 L245 130" stroke="white" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="checkmark-path"/>
+                            </g>
+                            
+                            <!-- Orbiting Circles -->
+                            <g class="orbit-system">
+                                <circle cx="225" cy="150" r="100" stroke="rgba(32,201,151,0.2)" stroke-width="2" fill="none" stroke-dasharray="4,4" class="orbit-ring"/>
+                                <circle cx="325" cy="150" r="18" fill="url(#circleGradient)" stroke="#20c997" stroke-width="2" class="orbit-dot dot-1">
+                                    <animateTransform attributeName="transform" type="rotate" from="0 225 150" to="360 225 150" dur="8s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="225" cy="50" r="15" fill="url(#circleGradient)" stroke="#17a2b8" stroke-width="2" class="orbit-dot dot-2">
+                                    <animateTransform attributeName="transform" type="rotate" from="0 225 150" to="360 225 150" dur="10s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="125" cy="150" r="16" fill="url(#circleGradient)" stroke="#20c997" stroke-width="2" class="orbit-dot dot-3">
+                                    <animateTransform attributeName="transform" type="rotate" from="0 225 150" to="360 225 150" dur="12s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="225" cy="250" r="14" fill="url(#circleGradient)" stroke="#17a2b8" stroke-width="2" class="orbit-dot dot-4">
+                                    <animateTransform attributeName="transform" type="rotate" from="0 225 150" to="360 225 150" dur="9s" repeatCount="indefinite"/>
+                                </circle>
+                            </g>
+                            
+                            <!-- Lock Icons -->
+                            <g class="lock-icon lock-1">
+                                <rect x="60" y="120" width="30" height="35" rx="4" fill="rgba(32,201,151,0.3)" stroke="#20c997" stroke-width="2"/>
+                                <path d="M65 120 L65 110 Q65 100 75 100 Q85 100 85 110 L85 120" stroke="#20c997" stroke-width="2" fill="none"/>
+                                <circle cx="75" cy="135" r="3" fill="#20c997"/>
+                            </g>
+                            <g class="lock-icon lock-2">
+                                <rect x="360" y="120" width="30" height="35" rx="4" fill="rgba(23,162,184,0.3)" stroke="#17a2b8" stroke-width="2"/>
+                                <path d="M365 120 L365 110 Q365 100 375 100 Q385 100 385 110 L385 120" stroke="#17a2b8" stroke-width="2" fill="none"/>
+                                <circle cx="375" cy="135" r="3" fill="#17a2b8"/>
+                            </g>
+                            
+                            <!-- Connection Lines -->
+                            <line x1="90" y1="137" x2="165" y2="150" stroke="#20c997" stroke-width="2" opacity="0.4" stroke-dasharray="3,3" class="connection-line line-1"/>
+                            <line x1="285" y1="150" x2="360" y2="137" stroke="#17a2b8" stroke-width="2" opacity="0.4" stroke-dasharray="3,3" class="connection-line line-2"/>
+                            
+                            <!-- User Icons -->
+                            <g class="user-icon user-1">
+                                <circle cx="100" cy="240" r="22" fill="rgba(32,201,151,0.2)" stroke="#20c997" stroke-width="2"/>
+                                <circle cx="100" cy="235" r="8" fill="#20c997"/>
+                                <path d="M85 255 Q100 248 115 255" stroke="#20c997" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                            </g>
+                            <g class="user-icon user-2">
+                                <circle cx="350" cy="240" r="22" fill="rgba(23,162,184,0.2)" stroke="#17a2b8" stroke-width="2"/>
+                                <circle cx="350" cy="235" r="8" fill="#17a2b8"/>
+                                <path d="M335 255 Q350 248 365 255" stroke="#17a2b8" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                            </g>
+                            
+                            <!-- Bottom Text -->
+                            <text x="225" y="305" text-anchor="middle" fill="#1a2332" font-family="Montserrat, sans-serif" font-size="18" font-weight="700">Secure & Reliable</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="contact" data-aos="fade-up">
+            <div class="container">
+                <h2>Contact</h2>
+                <p>For more information, email us at info@heraldbusiness.org</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Herald Business. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="landing.js"></script>
+</body>
+</html>
