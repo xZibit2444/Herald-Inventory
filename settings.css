@@ -720,6 +720,49 @@ input:checked + .slider:before {
         padding: 1rem;
     }
     
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .page-header p {
+        font-size: 0.9rem;
+    }
+    
+    .settings-card {
+        padding: 1.25rem;
+    }
+    
+    .settings-card h2 {
+        font-size: 1.1rem;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
+    }
+    
+    .form-group input {
+        font-size: 0.95rem;
+        padding: 0.85rem;
+    }
+    
+    .btn-save {
+        width: 100%;
+        padding: 0.9rem;
+        font-size: 0.95rem;
+    }
+    
+    .top-nav {
+        padding: 1rem;
+    }
+    
+    .nav-title {
+        font-size: 1rem;
+    }
+
+    .settings-content {
+        padding: 1rem;
+    }
+    
     .form-row {
         grid-template-columns: 1fr;
     }

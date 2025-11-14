@@ -723,15 +723,78 @@ body {
         padding: 1rem;
     }
     
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .page-header p {
+        font-size: 0.9rem;
+    }
+    
     .quick-stats {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .stat-card {
+        padding: 1.25rem;
+    }
+    
+    .stat-card h3 {
+        font-size: 0.9rem;
+    }
+    
+    .stat-value {
+        font-size: 1.75rem;
+    }
+    
+    .reports-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .report-card {
+        padding: 1.25rem;
     }
     
     .form-row {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
     }
     
     .btn-generate {
         width: 100%;
+        padding: 0.9rem;
+        font-size: 0.95rem;
+    }
+    
+    .top-nav {
+        padding: 1rem;
+    }
+    
+    .nav-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header h1 {
+        font-size: 1.25rem;
+    }
+    
+    .stat-card {
+        padding: 1rem;
+    }
+    
+    .stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .btn-generate {
+        padding: 0.75rem;
+        font-size: 0.9rem;
     }
 }

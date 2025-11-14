@@ -604,8 +604,20 @@ body {
         gap: 1rem;
     }
     
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .page-header p {
+        font-size: 0.9rem;
+    }
+    
     .form-section {
-        padding: 1.5rem;
+        padding: 1.25rem;
+    }
+    
+    .form-section h2 {
+        font-size: 1.1rem;
     }
     
     .form-grid {
@@ -613,13 +625,66 @@ body {
         gap: 1rem;
     }
     
+    .form-group label {
+        font-size: 0.9rem;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 0.95rem;
+        padding: 0.85rem;
+    }
+    
+    .upload-area {
+        padding: 1.5rem;
+    }
+    
     .form-actions {
         flex-direction: column-reverse;
+        gap: 0.75rem;
     }
     
     .btn-primary,
     .btn-secondary {
         width: 100%;
         justify-content: center;
+        padding: 0.9rem;
+        font-size: 0.95rem;
+    }
+    
+    .top-nav {
+        padding: 1rem;
+    }
+    
+    .nav-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header h1 {
+        font-size: 1.25rem;
+    }
+    
+    .form-section {
+        padding: 1rem;
+    }
+    
+    .form-section h2 {
+        font-size: 1rem;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 0.9rem;
+        padding: 0.75rem;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.75rem;
+        font-size: 0.9rem;
     }
 }

@@ -720,6 +720,19 @@ tbody tr:hover .badge {
     
     .metrics-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .metric-card {
+        padding: 1.25rem;
+    }
+    
+    .metric-card h3 {
+        font-size: 0.9rem;
+    }
+    
+    .metric-value {
+        font-size: 1.75rem;
     }
     
     .top-nav {
@@ -727,18 +740,58 @@ tbody tr:hover .badge {
     }
     
     .nav-title {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
     
     .welcome-section h1 {
         font-size: 1.5rem;
     }
     
+    .welcome-section p {
+        font-size: 0.9rem;
+    }
+    
+    .activity-section h2 {
+        font-size: 1.1rem;
+    }
+    
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
     .activity-table {
         font-size: 0.85rem;
+        min-width: 600px;
     }
     
     th, td {
         padding: 0.75rem 0.5rem;
+    }
+    
+    .chart-container {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-section h1 {
+        font-size: 1.25rem;
+    }
+    
+    .metric-card {
+        padding: 1rem;
+    }
+    
+    .metric-value {
+        font-size: 1.5rem;
+    }
+    
+    .activity-table {
+        font-size: 0.8rem;
+    }
+    
+    th, td {
+        padding: 0.6rem 0.4rem;
     }
 }
