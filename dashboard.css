@@ -580,7 +580,7 @@ tbody tr:hover .badge {
 
 /* RBAC - Hide admin elements by default */
 .admin-only {
-    display: none;
+    display: none !important;
 }
 
 /* Logout Modal */

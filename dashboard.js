@@ -37,8 +37,8 @@ function initDashboard() {
     // Show admin sections if user is admin
     if (role === 'admin') {
         document.querySelectorAll('.admin-only').forEach(el => {
-            el.style.display = '';
             el.classList.remove('admin-only');
+            el.style.removeProperty('display');
         });
     }
 }
