@@ -64,7 +64,14 @@ loginForm.addEventListener('submit', function(e) {
             localStorage.setItem('rememberedUser', username);
         }
         localStorage.setItem('authToken', token);
-        localStorage.setItem('userRole', 'admin'); // Set all users as admin for demo
+        
+        // Only admin@heraldinventory.com gets admin role, everyone else is employee
+        if (fullEmail === 'admin@heraldinventory.com') {
+            localStorage.setItem('userRole', 'admin');
+        } else {
+            localStorage.setItem('userRole', 'employee');
+        }
+        
         sessionStorage.setItem('isLoggedIn', 'true');
         sessionStorage.setItem('username', fullEmail);
         

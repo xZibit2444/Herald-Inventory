@@ -92,7 +92,14 @@ signupForm.addEventListener('submit', function(e) {
         
         // Store session data
         localStorage.setItem('authToken', token);
-        localStorage.setItem('userRole', 'admin');
+        
+        // Only admin@heraldinventory.com gets admin role, everyone else is employee
+        if (fullEmail === 'admin@heraldinventory.com') {
+            localStorage.setItem('userRole', 'admin');
+        } else {
+            localStorage.setItem('userRole', 'employee');
+        }
+        
         localStorage.setItem('userFullName', fullName);
         sessionStorage.setItem('isLoggedIn', 'true');
         sessionStorage.setItem('username', fullEmail);
