@@ -88,9 +88,9 @@ function initInventory() {
 function setupEventListeners() {
     // Search with debouncing
     let searchTimeout;
-    document.getElementById('searchInput').addEventListener('input', () => {
+    document.getElementById('searchInput').addEventListener('input', (e) => {
         clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(handleSearch, 300);
+        searchTimeout = setTimeout(() => handleSearch(e), 300);
     });
     
     // Filters
@@ -224,9 +224,26 @@ function renderTable() {
 
 // Handle search
 function handleSearch(e) {
-    const query = e.target.value.toLowerCase();
-    applyFilters();
+    const searchInput = document.getElementById('searchInput');
+    const query = searchInput.value.toLowerCase();
     
+    // Start with filtered data from other filters
+    const categoryFilter = document.getElementById('categoryFilter').value;
+    const statusFilter = document.getElementById('statusFilter').value;
+    
+    filteredData = [...inventoryData];
+    
+    // Apply category filter
+    if (categoryFilter) {
+        filteredData = filteredData.filter(item => item.category === categoryFilter);
+    }
+    
+    // Apply status filter
+    if (statusFilter) {
+        filteredData = filteredData.filter(item => item.status === statusFilter);
+    }
+    
+    // Apply search query
     if (query) {
         filteredData = filteredData.filter(item => 
             item.name.toLowerCase().includes(query) || 
@@ -240,17 +257,29 @@ function handleSearch(e) {
 
 // Apply filters
 function applyFilters() {
+    const searchInput = document.getElementById('searchInput');
+    const query = searchInput.value.toLowerCase();
     const categoryFilter = document.getElementById('categoryFilter').value;
     const statusFilter = document.getElementById('statusFilter').value;
     
     filteredData = [...inventoryData];
     
+    // Apply category filter
     if (categoryFilter) {
         filteredData = filteredData.filter(item => item.category === categoryFilter);
     }
     
+    // Apply status filter
     if (statusFilter) {
         filteredData = filteredData.filter(item => item.status === statusFilter);
+    }
+    
+    // Apply search query
+    if (query) {
+        filteredData = filteredData.filter(item => 
+            item.name.toLowerCase().includes(query) || 
+            item.category.toLowerCase().includes(query)
+        );
     }
     
     currentPage = 1;
