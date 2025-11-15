@@ -569,6 +569,35 @@ body {
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
+/* Success Modal */
+.success-modal .modal-icon.success {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+#successDetails {
+    background: #f3f4f6;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+#successDetails p {
+    margin: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+#successDetails .label {
+    font-weight: 600;
+    color: #374151;
+}
+
+#successDetails .value {
+    color: #6b7280;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .menu-toggle {

@@ -76,20 +76,36 @@ document.getElementById('addItemForm').addEventListener('submit', function(e) {
     const successMessage = document.getElementById('successMessage');
     successMessage.classList.add('show');
     
-    // Show alert and redirect
-    setTimeout(() => {
-        alert(`Item "${formData.name}" has been added successfully!\n\nID: ${formData.id}\nCategory: ${formData.category}\nQuantity: ${formData.quantity}\nLocation: ${formData.location}`);
-        
-        // Redirect to inventory list
-        window.location.href = 'inventory-list.html';
-    }, 500);
+    // Show custom success modal
+    showSuccessModal(formData);
 });
+
+// Show success modal
+function showSuccessModal(formData) {
+    const modal = document.getElementById('successModal');
+    const detailsDiv = document.getElementById('successDetails');
+    
+    detailsDiv.innerHTML = `
+        <p><span class="label">Item Name:</span> <span class="value">${formData.name}</span></p>
+        <p><span class="label">Category:</span> <span class="value">${formData.category}</span></p>
+        <p><span class="label">Quantity:</span> <span class="value">${formData.quantity}</span></p>
+        <p><span class="label">Location:</span> <span class="value">${formData.location}</span></p>
+        <p><span class="label">Status:</span> <span class="value">${formData.status}</span></p>
+    `;
+    
+    modal.classList.add('active');
+}
 
 // Reset form
 function resetForm() {
     document.getElementById('addItemForm').reset();
     document.getElementById('status').value = 'In Stock'; // Set default status
 }
+
+// Success modal button
+document.getElementById('viewInventory').addEventListener('click', () => {
+    window.location.href = 'inventory-list.html';
+});
 
 // Sidebar navigation
 const sidebar = document.getElementById('sidebar');
@@ -139,6 +155,14 @@ confirmLogout.addEventListener('click', () => {
 logoutModal.addEventListener('click', (e) => {
     if (e.target === logoutModal) {
         logoutModal.classList.remove('active');
+    }
+});
+
+// Close success modal on outside click
+const successModal = document.getElementById('successModal');
+successModal.addEventListener('click', (e) => {
+    if (e.target === successModal) {
+        window.location.href = 'inventory-list.html';
     }
 });
 
