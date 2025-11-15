@@ -54,7 +54,7 @@ document.getElementById('addItemForm').addEventListener('submit', function(e) {
         name: document.getElementById('itemName').value,
         category: document.getElementById('category').value,
         quantity: parseInt(document.getElementById('quantity').value),
-        location: document.getElementById('location').value,
+        location: document.getElementById('location').value || 'Not specified',
         status: document.getElementById('status').value,
         unitPrice: document.getElementById('unitPrice').value || null,
         supplier: document.getElementById('supplier').value || null,
@@ -85,13 +85,19 @@ function showSuccessModal(formData) {
     const modal = document.getElementById('successModal');
     const detailsDiv = document.getElementById('successDetails');
     
-    detailsDiv.innerHTML = `
+    let detailsHTML = `
         <p><span class="label">Item Name:</span> <span class="value">${formData.name}</span></p>
         <p><span class="label">Category:</span> <span class="value">${formData.category}</span></p>
         <p><span class="label">Quantity:</span> <span class="value">${formData.quantity}</span></p>
-        <p><span class="label">Location:</span> <span class="value">${formData.location}</span></p>
-        <p><span class="label">Status:</span> <span class="value">${formData.status}</span></p>
     `;
+    
+    if (formData.location && formData.location !== 'Not specified') {
+        detailsHTML += `<p><span class="label">Location:</span> <span class="value">${formData.location}</span></p>`;
+    }
+    
+    detailsHTML += `<p><span class="label">Status:</span> <span class="value">${formData.status}</span></p>`;
+    
+    detailsDiv.innerHTML = detailsHTML;
     
     modal.classList.add('active');
 }
