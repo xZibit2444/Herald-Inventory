@@ -10,8 +10,8 @@ function checkAuth() {
     return true;
 }
 
-// Mock inventory data
-const inventoryData = [
+// Mock inventory data (default items)
+const defaultInventoryData = [
     { id: 1, name: 'Ballpoint Pens (Blue)', category: 'Stationery', quantity: 145, location: 'Shelf 3', status: 'In Stock' },
     { id: 2, name: 'A4 Paper Reams', category: 'Stationery', quantity: 28, location: 'Storage Room', status: 'In Stock' },
     { id: 3, name: 'Printer Ink Cartridges', category: 'Supplies', quantity: 8, location: 'Cabinet A', status: 'Low Stock' },
@@ -28,6 +28,20 @@ const inventoryData = [
     { id: 14, name: 'Printer Paper (Legal)', category: 'Stationery', quantity: 6, location: 'Storage Room', status: 'Low Stock' },
     { id: 15, name: 'Monitor Stands', category: 'Equipment', quantity: 3, location: 'IT Room', status: 'In Stock' }
 ];
+
+// Load inventory data from localStorage or use default
+function loadInventoryData() {
+    const stored = localStorage.getItem('inventoryData');
+    if (stored) {
+        return JSON.parse(stored);
+    } else {
+        // First time, initialize with default data
+        localStorage.setItem('inventoryData', JSON.stringify(defaultInventoryData));
+        return [...defaultInventoryData];
+    }
+}
+
+let inventoryData = loadInventoryData();
 
 // State
 let currentPage = 1;
@@ -384,6 +398,9 @@ document.getElementById('editStatusForm').addEventListener('submit', (e) => {
         currentEditItem.quantity = newQuantity;
         currentEditItem.status = newStatus;
         
+        // Save to localStorage
+        localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
+        
         // Log the change
         console.log(`Item updated: "${currentEditItem.name}"`);
         console.log(`Category: ${oldCategory} → ${newCategory}`);
@@ -409,9 +426,22 @@ function deleteItem(id) {
     if (!item) return;
     
     if (confirm(`Are you sure you want to delete "${item.name}"?`)) {
-        console.log('Deleting item:', id);
-        alert(`Item "${item.name}" has been deleted (mock action).`);
-        // In a real app, you would remove from data and re-render
+        // Remove item from array
+        const index = inventoryData.findIndex(i => i.id === id);
+        if (index > -1) {
+            inventoryData.splice(index, 1);
+            
+            // Save to localStorage
+            localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
+            
+            // Reload data and re-render
+            filteredData = [...inventoryData];
+            currentPage = 1;
+            renderTable();
+            
+            console.log('Deleted item:', id);
+            alert(`Item "${item.name}" has been deleted successfully.`);
+        }
     }
 }
 

@@ -41,11 +41,19 @@ function initAddItem() {
 document.getElementById('addItemForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
+    // Get existing inventory from localStorage
+    let inventory = JSON.parse(localStorage.getItem('inventoryData')) || [];
+    
+    // Generate new ID (max existing ID + 1)
+    const maxId = inventory.length > 0 ? Math.max(...inventory.map(item => item.id)) : 0;
+    const newId = maxId + 1;
+    
     // Get form data
     const formData = {
+        id: newId,
         name: document.getElementById('itemName').value,
         category: document.getElementById('category').value,
-        quantity: document.getElementById('quantity').value,
+        quantity: parseInt(document.getElementById('quantity').value),
         location: document.getElementById('location').value,
         status: document.getElementById('status').value,
         unitPrice: document.getElementById('unitPrice').value || null,
@@ -55,22 +63,25 @@ document.getElementById('addItemForm').addEventListener('submit', function(e) {
         addedDate: new Date().toISOString()
     };
     
-    // Log to console (in real app, this would be sent to backend)
-    console.log('New item to add:', formData);
+    // Add new item to inventory
+    inventory.push(formData);
+    
+    // Save back to localStorage
+    localStorage.setItem('inventoryData', JSON.stringify(inventory));
+    
+    // Log to console
+    console.log('New item added:', formData);
     
     // Show success message
     const successMessage = document.getElementById('successMessage');
     successMessage.classList.add('show');
     
-    // Reset form after delay
+    // Show alert and redirect
     setTimeout(() => {
-        resetForm();
-        successMessage.classList.remove('show');
-    }, 3000);
-    
-    // Mock alert
-    setTimeout(() => {
-        alert(`Item "${formData.name}" has been added successfully!`);
+        alert(`Item "${formData.name}" has been added successfully!\n\nID: ${formData.id}\nCategory: ${formData.category}\nQuantity: ${formData.quantity}\nLocation: ${formData.location}`);
+        
+        // Redirect to inventory list
+        window.location.href = 'inventory-list.html';
     }, 500);
 });
 
