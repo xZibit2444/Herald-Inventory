@@ -1,0 +1,17 @@
+[
+    { "id": 1, "name": "Ballpoint Pens (Blue)", "category": "Stationery", "quantity": 145, "location": "Shelf 3", "status": "In Stock" },
+    { "id": 2, "name": "A4 Paper Reams", "category": "Stationery", "quantity": 28, "location": "Storage Room", "status": "In Stock" },
+    { "id": 3, "name": "Printer Ink Cartridges", "category": "Supplies", "quantity": 8, "location": "Cabinet A", "status": "Low Stock" },
+    { "id": 4, "name": "Desk Chairs", "category": "Furniture", "quantity": 2, "location": "Office Floor", "status": "Checked Out" },
+    { "id": 5, "name": "Staplers", "category": "Stationery", "quantity": 12, "location": "Shelf 2", "status": "In Stock" },
+    { "id": 6, "name": "Laptops (Dell)", "category": "Electronics", "quantity": 1, "location": "IT Room", "status": "Checked Out" },
+    { "id": 7, "name": "Notebooks (A5)", "category": "Stationery", "quantity": 67, "location": "Shelf 1", "status": "In Stock" },
+    { "id": 8, "name": "USB Flash Drives", "category": "Electronics", "quantity": 5, "location": "Drawer B", "status": "Low Stock" },
+    { "id": 9, "name": "Paper Clips (Box)", "category": "Supplies", "quantity": 0, "location": "Shelf 3", "status": "Out of Stock" },
+    { "id": 10, "name": "Whiteboard Markers", "category": "Stationery", "quantity": 24, "location": "Cabinet C", "status": "In Stock" },
+    { "id": 11, "name": "Office Desks", "category": "Furniture", "quantity": 8, "location": "Office Floor", "status": "In Stock" },
+    { "id": 12, "name": "Wireless Mouse", "category": "Electronics", "quantity": 15, "location": "Drawer A", "status": "In Stock" },
+    { "id": 13, "name": "File Folders", "category": "Supplies", "quantity": 42, "location": "Shelf 4", "status": "In Stock" },
+    { "id": 14, "name": "Printer Paper (Legal)", "category": "Stationery", "quantity": 6, "location": "Storage Room", "status": "Low Stock" },
+    { "id": 15, "name": "Monitor Stands", "category": "Equipment", "quantity": 3, "location": "IT Room", "status": "In Stock" }
+]
