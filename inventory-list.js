@@ -10,38 +10,8 @@ function checkAuth() {
     return true;
 }
 
-// Mock inventory data (default items)
-const defaultInventoryData = [
-    { id: 1, name: 'Ballpoint Pens (Blue)', category: 'Stationery', quantity: 145, location: 'Shelf 3', status: 'In Stock' },
-    { id: 2, name: 'A4 Paper Reams', category: 'Stationery', quantity: 28, location: 'Storage Room', status: 'In Stock' },
-    { id: 3, name: 'Printer Ink Cartridges', category: 'Supplies', quantity: 8, location: 'Cabinet A', status: 'Low Stock' },
-    { id: 4, name: 'Desk Chairs', category: 'Furniture', quantity: 2, location: 'Office Floor', status: 'In Stock' },
-    { id: 5, name: 'Staplers', category: 'Stationery', quantity: 12, location: 'Shelf 2', status: 'In Stock' },
-    { id: 6, name: 'Laptops (Dell)', category: 'Electronics', quantity: 1, location: 'IT Room', status: 'In Stock' },
-    { id: 7, name: 'Notebooks (A5)', category: 'Stationery', quantity: 67, location: 'Shelf 1', status: 'In Stock' },
-    { id: 8, name: 'USB Flash Drives', category: 'Electronics', quantity: 5, location: 'Drawer B', status: 'Low Stock' },
-    { id: 9, name: 'Paper Clips (Box)', category: 'Supplies', quantity: 0, location: 'Shelf 3', status: 'Out of Stock' },
-    { id: 10, name: 'Whiteboard Markers', category: 'Stationery', quantity: 24, location: 'Cabinet C', status: 'In Stock' },
-    { id: 11, name: 'Office Desks', category: 'Furniture', quantity: 8, location: 'Office Floor', status: 'In Stock' },
-    { id: 12, name: 'Wireless Mouse', category: 'Electronics', quantity: 15, location: 'Drawer A', status: 'In Stock' },
-    { id: 13, name: 'File Folders', category: 'Supplies', quantity: 42, location: 'Shelf 4', status: 'In Stock' },
-    { id: 14, name: 'Printer Paper (Legal)', category: 'Stationery', quantity: 6, location: 'Storage Room', status: 'Low Stock' },
-    { id: 15, name: 'Monitor Stands', category: 'Equipment', quantity: 3, location: 'IT Room', status: 'In Stock' }
-];
-
-// Load inventory data from localStorage or use default
-function loadInventoryData() {
-    const stored = localStorage.getItem('inventoryData');
-    if (stored) {
-        return JSON.parse(stored);
-    } else {
-        // First time, initialize with default data
-        localStorage.setItem('inventoryData', JSON.stringify(defaultInventoryData));
-        return [...defaultInventoryData];
-    }
-}
-
-let inventoryData = loadInventoryData();
+// State for inventory data (loaded from Firestore)
+let inventoryData = [];
 
 // State
 let currentPage = 1;
@@ -77,11 +47,27 @@ function initInventory() {
         });
     }
     
-    // Render initial table
-    renderTable();
-    
     // Setup event listeners
     setupEventListeners();
+    
+    // Load inventory data from Firestore with real-time updates
+    inventoryCollection.onSnapshot((snapshot) => {
+        inventoryData = [];
+        snapshot.forEach((doc) => {
+            inventoryData.push({ ...doc.data(), firestoreId: doc.id });
+        });
+        
+        // Sort by ID
+        inventoryData.sort((a, b) => a.id - b.id);
+        
+        // Update filtered data and render
+        applyFilters();
+        
+        console.log('Inventory data loaded from Firestore:', inventoryData.length, 'items');
+    }, (error) => {
+        console.error('Error loading inventory:', error);
+        alert('Error loading inventory data. Please check your connection.');
+    });
 }
 
 // Setup event listeners
@@ -422,30 +408,32 @@ document.getElementById('editStatusForm').addEventListener('submit', (e) => {
         const oldQuantity = currentEditItem.quantity;
         const oldStatus = currentEditItem.status;
         
-        // Update item
-        currentEditItem.category = newCategory;
-        currentEditItem.quantity = newQuantity;
-        currentEditItem.status = newStatus;
+        // Update in Firestore
+        const firestoreId = currentEditItem.firestoreId;
         
-        // Save to localStorage
-        localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
-        
-        // Log the change
-        console.log(`Item updated: "${currentEditItem.name}"`);
-        console.log(`Category: ${oldCategory} → ${newCategory}`);
-        console.log(`Quantity: ${oldQuantity} → ${newQuantity}`);
-        console.log(`Status: ${oldStatus} → ${newStatus}`);
-        console.log(`Updated by: ${sessionStorage.getItem('username') || 'User'}`);
-        console.log(`Date: ${new Date().toISOString()}`);
-        
-        // Close modal
-        closeEditModal();
-        
-        // Re-render table
-        applyFilters();
-        
-        // Show success message
-        alert(`Item updated successfully!\n\nItem: ${currentEditItem.name}\nCategory: ${newCategory}\nQuantity: ${newQuantity}\nStatus: ${newStatus}`);
+        inventoryCollection.doc(firestoreId).update({
+            category: newCategory,
+            quantity: newQuantity,
+            status: newStatus,
+            lastModifiedBy: sessionStorage.getItem('username') || 'User',
+            lastModifiedDate: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(() => {
+            // Log the change
+            console.log(`Item updated: "${currentEditItem.name}"`);
+            console.log(`Category: ${oldCategory} → ${newCategory}`);
+            console.log(`Quantity: ${oldQuantity} → ${newQuantity}`);
+            console.log(`Status: ${oldStatus} → ${newStatus}`);
+            console.log(`Updated by: ${sessionStorage.getItem('username') || 'User'}`);
+            
+            // Close modal
+            closeEditModal();
+            
+            // Show success message
+            alert(`Item updated successfully!\n\nItem: ${currentEditItem.name}\nCategory: ${newCategory}\nQuantity: ${newQuantity}\nStatus: ${newStatus}`);
+        }).catch((error) => {
+            console.error('Error updating item:', error);
+            alert('Error updating item. Please try again.');
+        });
     }
 });
 
@@ -455,22 +443,15 @@ function deleteItem(id) {
     if (!item) return;
     
     if (confirm(`Are you sure you want to delete "${item.name}"?`)) {
-        // Remove item from array
-        const index = inventoryData.findIndex(i => i.id === id);
-        if (index > -1) {
-            inventoryData.splice(index, 1);
-            
-            // Save to localStorage
-            localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
-            
-            // Reload data and re-render
-            filteredData = [...inventoryData];
-            currentPage = 1;
-            renderTable();
-            
+        const firestoreId = item.firestoreId;
+        
+        inventoryCollection.doc(firestoreId).delete().then(() => {
             console.log('Deleted item:', id);
             alert(`Item "${item.name}" has been deleted successfully.`);
-        }
+        }).catch((error) => {
+            console.error('Error deleting item:', error);
+            alert('Error deleting item. Please try again.');
+        });
     }
 }
 

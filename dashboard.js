@@ -43,24 +43,18 @@ function initDashboard() {
     }
 }
 
-// Update maintenance count from inventory data
+// Update maintenance count from Firestore with real-time updates
 function updateMaintenanceCount() {
-    const inventoryData = localStorage.getItem('inventoryData');
-    let maintenanceCount = 0;
-    
-    if (inventoryData) {
-        try {
-            const items = JSON.parse(inventoryData);
-            maintenanceCount = items.filter(item => item.status === 'Under Maintenance').length;
-        } catch (e) {
-            console.error('Error parsing inventory data:', e);
+    inventoryCollection.where('status', '==', 'Under Maintenance').onSnapshot((snapshot) => {
+        const maintenanceCount = snapshot.size;
+        const countElement = document.getElementById('maintenanceCount');
+        if (countElement) {
+            countElement.textContent = maintenanceCount;
         }
-    }
-    
-    const countElement = document.getElementById('maintenanceCount');
-    if (countElement) {
-        countElement.textContent = maintenanceCount;
-    }
+        console.log('Maintenance count updated:', maintenanceCount);
+    }, (error) => {
+        console.error('Error loading maintenance count:', error);
+    });
 }
 
 // Top nav scroll effect with debouncing

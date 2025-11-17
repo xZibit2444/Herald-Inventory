@@ -41,43 +41,49 @@ function initAddItem() {
 document.getElementById('addItemForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    // Get existing inventory from localStorage
-    let inventory = JSON.parse(localStorage.getItem('inventoryData')) || [];
-    
-    // Generate new ID (max existing ID + 1)
-    const maxId = inventory.length > 0 ? Math.max(...inventory.map(item => item.id)) : 0;
-    const newId = maxId + 1;
-    
-    // Get form data
-    const formData = {
-        id: newId,
-        name: document.getElementById('itemName').value,
-        category: document.getElementById('category').value,
-        quantity: parseInt(document.getElementById('quantity').value),
-        location: document.getElementById('location').value || 'Not specified',
-        status: document.getElementById('status').value,
-        unitPrice: document.getElementById('unitPrice').value || null,
-        supplier: document.getElementById('supplier').value || null,
-        description: document.getElementById('description').value || null,
-        addedBy: sessionStorage.getItem('username') || 'Unknown',
-        addedDate: new Date().toISOString()
-    };
-    
-    // Add new item to inventory
-    inventory.push(formData);
-    
-    // Save back to localStorage
-    localStorage.setItem('inventoryData', JSON.stringify(inventory));
-    
-    // Log to console
-    console.log('New item added:', formData);
-    
-    // Show success message
-    const successMessage = document.getElementById('successMessage');
-    successMessage.classList.add('show');
-    
-    // Show custom success modal
-    showSuccessModal(formData);
+    // Get max ID from Firestore first
+    inventoryCollection.orderBy('id', 'desc').limit(1).get().then((snapshot) => {
+        let maxId = 0;
+        if (!snapshot.empty) {
+            maxId = snapshot.docs[0].data().id;
+        }
+        const newId = maxId + 1;
+        
+        // Get form data
+        const formData = {
+            id: newId,
+            name: document.getElementById('itemName').value,
+            category: document.getElementById('category').value,
+            quantity: parseInt(document.getElementById('quantity').value),
+            location: document.getElementById('location').value || 'Not specified',
+            status: document.getElementById('status').value,
+            unitPrice: document.getElementById('unitPrice').value || null,
+            supplier: document.getElementById('supplier').value || null,
+            description: document.getElementById('description').value || null,
+            addedBy: sessionStorage.getItem('username') || 'Unknown',
+            addedDate: firebase.firestore.FieldValue.serverTimestamp()
+        };
+        
+        // Add to Firestore
+        return inventoryCollection.add(formData);
+    }).then((docRef) => {
+        console.log('New item added with ID:', docRef.id);
+        
+        // Get the added document to show in modal
+        return docRef.get();
+    }).then((doc) => {
+        const formData = doc.data();
+        
+        // Show success message
+        const successMessage = document.getElementById('successMessage');
+        successMessage.classList.add('show');
+        
+        // Show custom success modal
+        showSuccessModal(formData);
+    }).catch((error) => {
+        console.error('Error adding item:', error);
+        alert('Error adding item. Please try again.');
+    });
 });
 
 // Show success modal
