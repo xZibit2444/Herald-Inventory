@@ -38,7 +38,7 @@ loginForm.addEventListener('submit', function(e) {
     }
     
     // Append domain to create full email
-    const fullEmail = username + '@heraldinventory.com';
+    const fullEmail = username + '@heraldbusiness.org';
     
     if (!password) {
         showError('Please enter your password');
@@ -65,8 +65,8 @@ loginForm.addEventListener('submit', function(e) {
         }
         localStorage.setItem('authToken', token);
         
-        // Only admin@heraldinventory.com gets admin role, everyone else is employee
-        if (fullEmail === 'admin@heraldinventory.com') {
+        // Only admin@heraldbusiness.org gets admin role, everyone else is employee
+        if (fullEmail === 'admin@heraldbusiness.org') {
             localStorage.setItem('userRole', 'admin');
         } else {
             localStorage.setItem('userRole', 'employee');
