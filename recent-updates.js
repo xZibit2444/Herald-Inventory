@@ -18,7 +18,7 @@ const mockUpdates = [
         category: 'inventory',
         title: 'New Item Added',
         description: 'Added "Dell Monitor 27 inch" to inventory under Electronics category',
-        user: 'john.doe@heraldinventory.com',
+        user: 'john.doe@heraldbusiness.org',
         userName: 'John Doe',
         timestamp: new Date(Date.now() - 1000 * 60 * 30).toISOString(), // 30 mins ago
         details: 'Category: Electronics, Quantity: 5, Location: Office A'
@@ -29,7 +29,7 @@ const mockUpdates = [
         category: 'inventory',
         title: 'Inventory Updated',
         description: 'Updated quantity for "HP Printer" from 3 to 8 units',
-        user: 'jane.smith@heraldinventory.com',
+        user: 'jane.smith@heraldbusiness.org',
         userName: 'Jane Smith',
         timestamp: new Date(Date.now() - 1000 * 60 * 120).toISOString(), // 2 hours ago
         details: 'Old Quantity: 3, New Quantity: 8'
@@ -40,7 +40,7 @@ const mockUpdates = [
         category: 'maintenance',
         title: 'Maintenance Report Submitted',
         description: 'Created maintenance report for "Office Chair - broken armrest"',
-        user: 'kwame.mensah@heraldinventory.com',
+        user: 'kwame.mensah@heraldbusiness.org',
         userName: 'Kwame Mensah',
         timestamp: new Date(Date.now() - 1000 * 60 * 180).toISOString(), // 3 hours ago
         details: 'Priority: High, Technician: Ama Osei'
@@ -51,7 +51,7 @@ const mockUpdates = [
         category: 'users',
         title: 'User Settings Changed',
         description: 'Updated profile name from "J. Smith" to "Jane Smith"',
-        user: 'jane.smith@heraldinventory.com',
+        user: 'jane.smith@heraldbusiness.org',
         userName: 'Jane Smith',
         timestamp: new Date(Date.now() - 1000 * 60 * 240).toISOString(), // 4 hours ago
         details: 'Profile settings updated'
@@ -62,7 +62,7 @@ const mockUpdates = [
         category: 'maintenance',
         title: 'Maintenance Status Updated',
         description: 'Changed status of maintenance report #12 to "Completed"',
-        user: 'ama.osei@heraldinventory.com',
+        user: 'ama.osei@heraldbusiness.org',
         userName: 'Ama Osei',
         timestamp: new Date(Date.now() - 1000 * 60 * 300).toISOString(), // 5 hours ago
         details: 'Status: Pending → Completed'
@@ -73,7 +73,7 @@ const mockUpdates = [
         category: 'inventory',
         title: 'Item Removed',
         description: 'Deleted "Old Keyboard (Damaged)" from inventory',
-        user: 'john.doe@heraldinventory.com',
+        user: 'john.doe@heraldbusiness.org',
         userName: 'John Doe',
         timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(), // 1 day ago
         details: 'Reason: Damaged beyond repair'
@@ -84,7 +84,7 @@ const mockUpdates = [
         category: 'inventory',
         title: 'Item Status Changed',
         description: 'Changed status of "Laptop Lenovo" to "Under Maintenance"',
-        user: 'kofi.asante@heraldinventory.com',
+        user: 'kofi.asante@heraldbusiness.org',
         userName: 'Kofi Asante',
         timestamp: new Date(Date.now() - 1000 * 60 * 60 * 26).toISOString(), // 26 hours ago
         details: 'Status: Available → Under Maintenance'
@@ -95,7 +95,7 @@ const mockUpdates = [
         category: 'users',
         title: 'New User Registered',
         description: 'New staff member "Abena Darko" created an account',
-        user: 'abena.darko@heraldinventory.com',
+        user: 'abena.darko@heraldbusiness.org',
         userName: 'Abena Darko',
         timestamp: new Date(Date.now() - 1000 * 60 * 60 * 48).toISOString(), // 2 days ago
         details: 'Account created successfully'
@@ -106,7 +106,7 @@ const mockUpdates = [
         category: 'inventory',
         title: 'Bulk Items Added',
         description: 'Added 15 items to inventory from new shipment',
-        user: 'john.doe@heraldinventory.com',
+        user: 'john.doe@heraldbusiness.org',
         userName: 'John Doe',
         timestamp: new Date(Date.now() - 1000 * 60 * 60 * 72).toISOString(), // 3 days ago
         details: 'Categories: Office Supplies, Electronics'
@@ -117,7 +117,7 @@ const mockUpdates = [
         category: 'maintenance',
         title: 'Urgent Maintenance Request',
         description: 'Emergency repair request for "Server Room AC Unit"',
-        user: 'kwame.mensah@heraldinventory.com',
+        user: 'kwame.mensah@heraldbusiness.org',
         userName: 'Kwame Mensah',
         timestamp: new Date(Date.now() - 1000 * 60 * 60 * 96).toISOString(), // 4 days ago
         details: 'Priority: Urgent, Status: In Progress'
